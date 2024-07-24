@@ -14,7 +14,7 @@ FROM
 JOIN 
     Customer c ON o.CustomerID = c.CustomerID
 WHERE 
-    o.OrderID = 123;
+    o.OrderID = 123;    
 
 SELECT 
     ROW_NUMBER() OVER (ORDER BY od.ProductID) AS [STT],
