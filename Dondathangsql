@@ -1,0 +1,76 @@
+
+create database DonDatHang
+GO
+use DonDatHang
+go
+
+create table Orderr(
+    OrderID int PRIMARY KEY,
+    CustomerID int,
+    OrderDate date,
+    Status VARCHAR(15)
+    CONSTRAINT fk2 FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
+)
+GO
+
+CREATE TABLE Customer(
+    CustomerID int PRIMARY KEY,
+    CustomerName NVARCHAR(100),
+    Address NVARCHAR(100),
+    PhoneNumber varchar(10),
+    Status Varchar(15)
+)
+GO
+
+
+create table OrderDetails(
+    OrderID int,
+    productID int,
+    Price money,
+    quantity int
+    CONSTRAINT fk FOREIGN KEY(productID) REFERENCES Product(ProductID),
+    CONSTRAINT fk1 FOREIGN KEY(OrderID) REFERENCES Orderr(OrderID)
+
+)
+GO
+
+create table Product(
+    productID int PRIMARY KEY,
+    names nvarchar(100),
+    DESCRIPTIONs nvarchar(100),
+    unit varchar(7),
+    Price money,
+    quantity int,
+    Status varchar(15)
+)
+Go
+
+
+
+-- Chèn dữ liệu vào bảng Customer
+INSERT INTO Customer (CustomerID, CustomerName, Address, PhoneNumber, Status)
+VALUES 
+('1','Nguyễn Văn An', '111 Nguyễn Trãi, Thanh Xuân, Hà Nội', '987654321', 'Active');
+GO
+
+-- Chèn dữ liệu vào bảng Product
+INSERT INTO Product (productID, Names, Descriptions, Unit, Price, Quantity, Status)
+VALUES 
+('111','Máy Tính T450', 'Máy nhập mới', 'Chiếc', 1000, 1, 'Avai'),
+('112','Điện Thoại Nokia5670', 'Điện thoại đang hot', 'Chiếc', 200, 2, 'Avai'),
+('113','Máy In Samsung 450', 'Máy in đang ế', 'Chiếc', 100, 1, 'Avai');
+GO
+
+-- Chèn dữ liệu vào bảng Orderr
+INSERT INTO Orderr (OrderID, CustomerID, OrderDate, Status)
+VALUES 
+(123, 1, '2009-11-18', 'Completed');
+GO
+
+-- Chèn dữ liệu vào bảng OrderDetails
+INSERT INTO OrderDetails (OrderID, ProductID, Price, Quantity)
+VALUES 
+(123, 111, 1000, 1),
+(123, 112, 200, 2),
+(123, 113, 100, 1);
+GO
