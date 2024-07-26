@@ -119,3 +119,9 @@ VALUES
 (125, 116, 25, 2),
 (125, 117, 20, 3);
 GO
+
+-- Viết câu lệnh để thay đổi trường giá tiền của từng mặt hàng là dương(>0).
+ALTER TABLE Product
+ADD CONSTRAINT check_price_positive CHECK (Price > 0);
+
+
